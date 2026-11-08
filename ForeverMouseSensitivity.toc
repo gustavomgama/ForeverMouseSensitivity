@@ -3,6 +3,10 @@
 ## Notes: Adjust mouse/camera sensitivity via slash command.
 ## Author: dev
 ## Version: 0.1.0
+## IconTexture: Interface\Icons\INV_Misc_Gear_01
+## AddonCompartmentFunc: ForeverMouseSensitivity_OnAddonCompartmentClick
+## AddonCompartmentFuncOnEnter: ForeverMouseSensitivity_OnAddonCompartmentEnter
+## AddonCompartmentFuncOnLeave: ForeverMouseSensitivity_OnAddonCompartmentLeave
 ## SavedVariables: ForeverMouseSensitivityDB
 
 ForeverMouseSensitivity.lua

@@ -152,3 +152,23 @@ frame:SetScript("OnEvent", function(self, event, name)
         ns.category = panel
     end
 end)
+
+function ForeverMouseSensitivity_OnAddonCompartmentClick()
+    if Settings and Settings.OpenToCategory and ns.categoryID then
+        Settings.OpenToCategory(ns.categoryID)
+    elseif InterfaceOptionsFrame_OpenToCategory then
+        InterfaceOptionsFrame_OpenToCategory(panel)
+        InterfaceOptionsFrame_OpenToCategory(panel)
+    end
+end
+
+function ForeverMouseSensitivity_OnAddonCompartmentEnter(_, button)
+    GameTooltip:SetOwner(button, "ANCHOR_LEFT")
+    GameTooltip:SetText("Forever Mouse Sensitivity")
+    GameTooltip:AddLine("Click to open settings", 1, 1, 1)
+    GameTooltip:Show()
+end
+
+function ForeverMouseSensitivity_OnAddonCompartmentLeave()
+    GameTooltip:Hide()
+end
