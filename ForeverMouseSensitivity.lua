@@ -107,8 +107,8 @@ SLASH_FOREVERMOUSESENSITIVITY2 = "/sensitivity"
 SlashCmdList["FOREVERMOUSESENSITIVITY"] = function(msg)
     msg = (msg or ""):gsub("^%s+", ""):gsub("%s+$", "")
     if msg == "" then
-        if Settings and Settings.OpenToCategory then
-            Settings.OpenToCategory(ns.category or panel)
+        if Settings and Settings.OpenToCategory and ns.category then
+            Settings.OpenToCategory(ns.category)
         elseif InterfaceOptionsFrame_OpenToCategory then
             InterfaceOptionsFrame_OpenToCategory(panel)
         end
