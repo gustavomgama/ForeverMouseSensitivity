@@ -3,7 +3,10 @@ local addonName, ns = ...
 ns.db = { sensitivity = 1.0 }
 
 local function apply()
-    local v = tostring(ns.db.sensitivity or 1.0)
+    local n = tonumber(ns.db.sensitivity) or 1.0
+    n = math.max(0.1, math.min(100, n))
+    ns.db.sensitivity = n
+    local v = tostring(n)
     local ok1 = C_CVar.SetCVar("cameraYawMoveSpeed", v)
     local ok2 = C_CVar.SetCVar("cameraPitchMoveSpeed", v)
     if ok1 == nil or ok2 == nil then
