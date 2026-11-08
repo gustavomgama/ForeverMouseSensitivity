@@ -107,9 +107,10 @@ SLASH_FOREVERMOUSESENSITIVITY2 = "/sensitivity"
 SlashCmdList["FOREVERMOUSESENSITIVITY"] = function(msg)
     msg = (msg or ""):gsub("^%s+", ""):gsub("%s+$", "")
     if msg == "" then
-        if Settings and Settings.OpenToCategory and ns.category then
-            Settings.OpenToCategory(ns.category)
+        if Settings and Settings.OpenToCategory and ns.categoryID then
+            Settings.OpenToCategory(ns.categoryID)
         elseif InterfaceOptionsFrame_OpenToCategory then
+            InterfaceOptionsFrame_OpenToCategory(panel)
             InterfaceOptionsFrame_OpenToCategory(panel)
         end
         return
@@ -145,6 +146,7 @@ frame:SetScript("OnEvent", function(self, event, name)
         local category = Settings.RegisterCanvasLayoutCategory(panel, panel.name)
         Settings.RegisterAddOnCategory(category)
         ns.category = category
+        ns.categoryID = category.GetID and category:GetID() or category.ID
     elseif InterfaceOptions_AddCategory then
         InterfaceOptions_AddCategory(panel)
         ns.category = panel
