@@ -2,7 +2,8 @@
 ## Title: Forever Mouse Sensitivity
 ## Notes: Adjust mouse/camera sensitivity via slash command.
 ## Author: dev
-## Version: 0.1.0
+## Version: @project-version@
+## X-Curse-Project-ID: 1790832
 ## IconTexture: Interface\Icons\INV_Misc_Gear_01
 ## AddonCompartmentFunc: ForeverMouseSensitivity_OnAddonCompartmentClick
 ## AddonCompartmentFuncOnEnter: ForeverMouseSensitivity_OnAddonCompartmentEnter
