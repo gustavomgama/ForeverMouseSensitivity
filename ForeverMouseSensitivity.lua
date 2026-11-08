@@ -136,8 +136,9 @@ frame:SetScript("OnEvent", function(self, event, name)
     if name ~= addonName then return end
     ForeverMouseSensitivityDB = ForeverMouseSensitivityDB or { sensitivity = 1.0 }
     ns.db = ForeverMouseSensitivityDB
-    slider:SetValue(ns.db.sensitivity or 1.0)
-    editBox:SetText(string.format("%.2f", ns.db.sensitivity or 1.0))
+    ns.db.sensitivity = tonumber(ns.db.sensitivity) or 1.0
+    slider:SetValue(ns.db.sensitivity)
+    editBox:SetText(string.format("%.2f", ns.db.sensitivity))
     apply()
 
     if Settings and Settings.RegisterCanvasLayoutCategory then
