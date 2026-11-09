@@ -9,8 +9,9 @@ A tiny World of Warcraft: Forever addon to set your mouse/camera turn speed with
 - Reset button back to `1.00`
 - Slash command support
 - Saved automatically per account (`ForeverMouseSensitivityDB`)
-- Applies on login/reload
+- Applies on login/reload; panel shows applied/locked status
 - In-game settings panel under **Options → AddOns → Forever Mouse Sensitivity**
+- Addon compartment tooltip shows current sensitivity
 
 ## Slash commands
 

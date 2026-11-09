@@ -15,3 +15,12 @@ globals = {
     "SLASH_FOREVERMOUSESENSITIVITY2",
     "SlashCmdList",
 }
+read_globals = {
+    "C_CVar",
+    "CreateFrame",
+    "GameTooltip",
+    "InterfaceOptionsFrame_OpenToCategory",
+    "InterfaceOptions_AddCategory",
+    "Settings",
+    "_G",
+}

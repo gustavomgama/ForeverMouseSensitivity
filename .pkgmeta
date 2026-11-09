@@ -1,1 +1,8 @@
 package-as: ForeverMouseSensitivity
+
+ignore:
+  - tests
+  - .luarc.jsonc
+  - .serena
+  - .opencode
+

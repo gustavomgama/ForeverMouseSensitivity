@@ -1,0 +1,24 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "runtime.version": "Lua 5.1",
+  "diagnostics.globals": [
+    "C_CVar",
+    "CreateFrame",
+    "GameTooltip",
+    "InterfaceOptionsFrame_OpenToCategory",
+    "InterfaceOptions_AddCategory",
+    "Settings",
+    "ForeverMouseSensitivityDB",
+    "ForeverMouseSensitivity_OnAddonCompartmentClick",
+    "ForeverMouseSensitivity_OnAddonCompartmentEnter",
+    "ForeverMouseSensitivity_OnAddonCompartmentLeave",
+    "SLASH_FOREVERMOUSESENSITIVITY1",
+    "SLASH_FOREVERMOUSESENSITIVITY2",
+    "SlashCmdList"
+  ],
+  "diagnostics.disable": [
+    "redundant-parameter",
+    "missing-parameter",
+    "param-type-mismatch"
+  ]
+}
