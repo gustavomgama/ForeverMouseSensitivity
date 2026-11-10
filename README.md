@@ -10,8 +10,7 @@ A tiny World of Warcraft: Forever addon to set your mouse/camera turn speed with
 - Single value box that both displays and accepts the value, always shown as `X.XX`
 - Step buttons: `+0.01` `+0.10` `+1` and `-0.01` `-0.10` `-1`
 - Apply / Enter sends the value, Reset returns to the Blizzard default (`90.00`)
-- A green check mark flashes next to **Apply** when the value was applied![Uploading Captura de tela 2026-11-10 195102.png…]()
-
+- A green check mark flashes next to **Apply** when the value was applied
 - Errors (out of range, locked CVar) are reported inside the panel, never in chat
 - Saved automatically per account (`ForeverMouseSensitivityDB`)
 - Applied on login and reload; one chat line reports the loaded value
