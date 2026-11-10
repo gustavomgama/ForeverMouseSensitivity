@@ -122,8 +122,6 @@ function M.reset(opts)
     for i = 1, select("#", ...) do parts[#parts + 1] = tostring(select(i, ...)) end
     table.insert(M.prints, table.concat(parts, " "))
   end
-  _G.IsShiftKeyDown = function() return M.shift end
-  _G.IsControlKeyDown = function() return M.ctrl end
 
   _G.C_CVar = {
     SetCVar = function(name, value)

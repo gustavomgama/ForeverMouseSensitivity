@@ -5,6 +5,7 @@ ignore = {
     "211", -- unused variable
     "212", -- unused argument
     "213", -- unused loop variable
+    "122", -- setting read-only field: test mock defines WoW globals on _G
 }
 globals = {
     "ForeverMouseSensitivityDB",
