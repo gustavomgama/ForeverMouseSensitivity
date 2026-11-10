@@ -4,12 +4,14 @@ A tiny World of Warcraft: Forever addon to set your mouse/camera turn speed with
 
 ## Features
 
-- Slider from **0.1 to 100** in **0.01 steps**
-- Manual numeric entry (type `31.68` and press Enter or Apply)
-- Reset button back to `1.00`
-- Slash command support
+- Slider from **0.00 to 100.00**
+- Single value box that both displays and accepts the value, always shown as `X.XX`
+- Step buttons: `+0.01` `+0.10` `+1` and `-0.01` `-0.10` `-1`
+- Apply / Enter sends the value, Reset returns to the Blizzard default (`90.00`)
+- A green check mark flashes next to **Apply** when the value was applied
+- Errors (out of range, locked CVar) are reported inside the panel, never in chat
 - Saved automatically per account (`ForeverMouseSensitivityDB`)
-- Applies on login/reload; panel shows applied/locked status
+- Applied on login and reload; one chat line reports the loaded value
 - In-game settings panel under **Options → AddOns → Forever Mouse Sensitivity**
 - Addon compartment tooltip shows current sensitivity
 
@@ -19,17 +21,19 @@ A tiny World of Warcraft: Forever addon to set your mouse/camera turn speed with
 |---|---|
 | `/sens` | Open the settings panel |
 | `/sens 31.68` | Set sensitivity to 31.68 |
-| `/sens reset` | Reset to 1.00 |
+| `/sens reset` | Reset to the default (90.00) |
 | `/sensitivity` | Alias for `/sens` |
 
 ## What it changes
 
-The addon sets these CVars:
+The addon sets these CVars, always written with two decimals:
 
-- `cameraYawMoveSpeed`
-- `cameraPitchMoveSpeed`
+- `cameraYawMoveSpeed` — the value you enter
+- `cameraPitchMoveSpeed` — the same value scaled by `45/90`
 
-If the game is in combat or the CVar is locked, it prints a warning instead of silently failing.
+So the Blizzard defaults (`90` yaw / `45` pitch) are produced by entering `90.00`.
+
+If the game is in combat or the CVar is locked, the value is still saved and the panel shows a warning.
 
 ## Install
 
@@ -44,5 +48,6 @@ Then enable it in the AddOns list.
 ## Notes
 
 - Interface: `16001` (WoW: Forever 1.60.1)
-- Values are clamped to 0.1–100.
+- Accepted range: `0.00`–`100.00`; anything else is rejected with a panel message.
 - Settings persist across characters (account-wide SavedVariables).
+- Tests: `lua tests/run.lua` (mocked WoW API, no client required).
