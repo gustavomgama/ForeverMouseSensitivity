@@ -1,4 +1,4 @@
-<img width="872" height="561" alt="Captura de tela 2026-11-10 195102" src="https://github.com/user-attachments/assets/271b08a4-3b96-4943-8e2c-1885edfd6e1f" />
+<img width="872" height="463" alt="Captura de tela 2026-11-10 195102" src="https://github.com/user-attachments/assets/77db273c-f8fd-4f57-9c45-53dd7ca358a7" />
 
 # Forever Mouse Sensitivity
 
