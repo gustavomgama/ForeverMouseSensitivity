@@ -31,6 +31,8 @@ jobs:
             echo "HEAD already tagged: $(git describe --tags --exact-match HEAD)"
             exit 0
           fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           VERSION="v1.0.$(git rev-list --count HEAD)"
           git tag -a "$VERSION" -m "$VERSION"
           git push origin "$VERSION"
