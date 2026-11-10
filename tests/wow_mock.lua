@@ -14,11 +14,15 @@ function Widget:SetHeight() end
 function Widget:SetText(t) self.text = t end
 function Widget:GetText() return self.text or "" end
 function Widget:SetTextColor(r, g, b) self.color = { r, g, b } end
+function Widget:SetFontObject() end
+function Widget:SetCursorPosition() end
 function Widget:SetScript(event, fn) self.scripts = self.scripts or {}; self.scripts[event] = fn end
 function Widget:GetScript(event) return self.scripts and self.scripts[event] end
 function Widget:Show() self.shown = true end
 function Widget:Hide() self.shown = false end
 function Widget:GetName() return self._name end
+function Widget:EnableKeyboard() end
+function Widget:HighlightText() self.highlighted = true end
 
 local FontString = setmetatable({}, { __index = Widget })
 FontString.__index = FontString
@@ -58,6 +62,14 @@ local function newSlider(name)
   return setmetatable({ _name = name, kind = "Slider", value = 0 }, Slider)
 end
 
+local Texture = setmetatable({}, { __index = Widget })
+Texture.__index = Texture
+function Texture:SetTexture(t) self.texture = t end
+function Texture:SetVertexColor(r, g, b) self.color = { r, g, b } end
+local function newTexture()
+  return setmetatable({ kind = "Texture", shown = false }, Texture)
+end
+
 local Button = setmetatable({}, { __index = Widget })
 Button.__index = Button
 function Button:Click()
@@ -77,6 +89,13 @@ function Frame:CreateFontString(_, _, _)
   return fs
 end
 function Frame:RegisterEvent(ev) self.events = self.events or {}; self.events[ev] = true end
+function Frame:CreateTexture()
+  local t = newTexture()
+  self.textures = self.textures or {}
+  table.insert(self.textures, t)
+  table.insert(M.textures, t)
+  return t
+end
 local function newFrame(name)
   return setmetatable({ _name = name, kind = "Frame" }, Frame)
 end
@@ -84,14 +103,17 @@ end
 function M.reset(opts)
   opts = opts or {}
   M.frames = {}
+  M.textures = {}
   M.eventFrames = {}
   M.prints = {}
   M.cvarCalls = {}
-  M.cvars = {}
+  M.cvars = opts.cvars or { cameraYawMoveSpeed = "1.00", cameraPitchMoveSpeed = "1.00" }
   M.cvarLocked = opts.cvarLocked or false
   M.ns = {}
   M.settingsRegistered = nil
   M.settingsOpened = nil
+  M.shift = opts.shift or false
+  M.ctrl = opts.ctrl or false
 
   _G.SlashCmdList = _G.SlashCmdList or {}
   _G.ForeverMouseSensitivityDB = opts.db
@@ -100,6 +122,8 @@ function M.reset(opts)
     for i = 1, select("#", ...) do parts[#parts + 1] = tostring(select(i, ...)) end
     table.insert(M.prints, table.concat(parts, " "))
   end
+  _G.IsShiftKeyDown = function() return M.shift end
+  _G.IsControlKeyDown = function() return M.ctrl end
 
   _G.C_CVar = {
     SetCVar = function(name, value)
@@ -161,6 +185,24 @@ function M.fireEvent(event, ...)
   for _, f in ipairs(M.eventFrames) do
     local fn = f.scripts and f.scripts.OnEvent
     if fn and (not f.events or f.events[event]) then fn(f, event, ...) end
+  end
+end
+
+function M.findCheckTexture()
+  for _, t in ipairs(M.textures) do
+    if t.texture and t.texture:match("UI%-CheckBox%-Check") then return t end
+  end
+end
+
+function M.findEditBox()
+  for _, f in ipairs(M.frames) do
+    if f.kind == "EditBox" then return f end
+  end
+end
+
+function M.findButton(text)
+  for _, f in ipairs(M.frames) do
+    if f.kind == "Button" and f.text == text then return f end
   end
 end
 
